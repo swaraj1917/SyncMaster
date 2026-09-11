@@ -1,0 +1,156 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  margin: 0;
+  padding: 0 20px 40px;
+}
+
+header {
+  padding: 20px 0 10px;
+}
+header h1 { margin: 0; }
+.subtitle { color: #666; margin: 4px 0 0; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 16px;
+}
+.tab-btn {
+  padding: 10px 18px;
+  border: none;
+  background: #e0e0e0;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px 6px 0 0;
+}
+.tab-btn.active {
+  background: #4CAF50;
+  color: white;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.params {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.params label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: #555;
+}
+.params input[type="number"] {
+  width: 70px;
+  padding: 4px;
+  margin-top: 2px;
+}
+.checkbox-label {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 6px;
+}
+
+.run-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.run-btn:hover { background: #43A047; }
+
+.banner {
+  color: #b71c1c;
+  font-weight: bold;
+  min-height: 20px;
+  margin-bottom: 8px;
+}
+
+.viz-row {
+  display: flex;
+  gap: 16px;
+}
+.viz-col {
+  flex: 1;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  min-width: 340px;
+}
+.output-col {
+  flex: 1;
+  min-width: 300px;
+}
+
+canvas#pc_canvas, canvas#rw_canvas {
+  background: white;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0 auto;
+}
+canvas#dp_canvas {
+  background: white;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0 auto;
+}
+
+.stats {
+  text-align: center;
+  font-family: "Consolas", monospace;
+  font-weight: bold;
+  margin: 8px 0;
+  color: #333;
+}
+
+textarea#pc_output, textarea#dp_output, textarea#rw_output {
+  width: 100%;
+  height: 320px;
+  font-family: "Consolas", monospace;
+  font-size: 12px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 8px;
+  resize: vertical;
+}
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+.controls button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.controls button:hover { background: #555; }
+
+#quit-btn {
+  background: #b71c1c;
+  margin-left: auto;
+}
+#quit-btn:hover { background: #d32f2f; }

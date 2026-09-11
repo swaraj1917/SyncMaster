@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SyncMaster — Web</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>SyncMaster 🧵</h1>
+  <p class="subtitle">Classic thread synchronization problems, in your browser.</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="producer_consumer">Producer-Consumer</button>
+  <button class="tab-btn" data-tab="dining_philosopher">Dining Philosophers</button>
+  <button class="tab-btn" data-tab="reader_writer">Reader-Writer</button>
+</nav>
+
+<!-- ============ PRODUCER-CONSUMER ============ -->
+<section class="tab-panel active" id="panel-producer_consumer">
+  <div class="params">
+    <label>Buffer Size <input type="number" id="pc_buffer_size" value="5" min="1"></label>
+    <label>Producers <input type="number" id="pc_num_producers" value="2" min="1"></label>
+    <label>Consumers <input type="number" id="pc_num_consumers" value="2" min="1"></label>
+    <label>Items / Producer <input type="number" id="pc_items_per_producer" value="5" min="1"></label>
+    <button class="run-btn" onclick="startSim('producer_consumer')">Run Simulation</button>
+  </div>
+  <div class="viz-row">
+    <div class="viz-col">
+      <canvas id="pc_canvas" width="560" height="70"></canvas>
+      <div class="stats" id="pc_stats">Produced: 0 | Consumed: 0 | In-flight: 0</div>
+      <canvas id="pc_chart" height="140"></canvas>
+    </div>
+    <div class="output-col">
+      <textarea id="pc_output" readonly></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DINING PHILOSOPHERS ============ -->
+<section class="tab-panel" id="panel-dining_philosopher">
+  <div class="params">
+    <label>Philosophers <input type="number" id="dp_num_philosophers" value="5" min="2"></label>
+    <label>Eat Count <input type="number" id="dp_eat_count" value="3" min="1"></label>
+    <label class="checkbox-label"><input type="checkbox" id="dp_naive"> Naive Mode (deadlock demo)</label>
+    <button class="run-btn" onclick="startSim('dining_philosopher')">Run Simulation</button>
+  </div>
+  <div class="banner" id="dp_banner"></div>
+  <div class="viz-row">
+    <div class="viz-col">
+      <canvas id="dp_canvas" width="320" height="320"></canvas>
+      <div class="stats" id="dp_stats">Meals served: 0</div>
+      <canvas id="dp_chart" height="140"></canvas>
+    </div>
+    <div class="output-col">
+      <textarea id="dp_output" readonly></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ============ READER-WRITER ============ -->
+<section class="tab-panel" id="panel-reader_writer">
+  <div class="params">
+    <label>Readers <input type="number" id="rw_num_readers" value="3" min="1"></label>
+    <label>Writers <input type="number" id="rw_num_writers" value="2" min="1"></label>
+    <label>Read Ops <input type="number" id="rw_read_times" value="3" min="1"></label>
+    <label>Write Ops <input type="number" id="rw_write_times" value="2" min="1"></label>
+    <button class="run-btn" onclick="startSim('reader_writer')">Run Simulation</button>
+  </div>
+  <div class="viz-row">
+    <div class="viz-col">
+      <canvas id="rw_canvas" width="560" height="120"></canvas>
+      <div class="stats" id="rw_stats">Reads: 0 | Writes: 0</div>
+      <canvas id="rw_chart" height="140"></canvas>
+    </div>
+    <div class="output-col">
+      <textarea id="rw_output" readonly></textarea>
+    </div>
+  </div>
+</section>
+
+<footer class="controls">
+  <button onclick="control('pause')">⏸ Pause</button>
+  <button onclick="control('resume')">▶ Resume</button>
+  <button onclick="control('stop')">⏹ Stop</button>
+  <button id="quit-btn" onclick="quitServer()">⏻ Quit Server</button>
+</footer>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
