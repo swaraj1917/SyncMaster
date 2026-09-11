@@ -1,9 +1,13 @@
 # SyncMaster 🧵
 
-An interactive simulator for classic thread synchronization problems, built in Python with a Tkinter GUI.
+A hands-on simulator for OS-level thread synchronization — mutexes, semaphores, deadlocks, and race conditions, visualized live. Try it instantly in your browser, no installation needed.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
+
+### 🔗 [Try it live — no install needed](https://syncmaster-ho1x.onrender.com)
+
+*(Free hosting tier — the first load may take 20–30 seconds to wake up if it's been idle.)*
 
 ---
 
