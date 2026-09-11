@@ -13,6 +13,10 @@ from utils.control import SimulationControl
 
 app = Flask(__name__)
 
+# Render sets this environment variable automatically on deployed services.
+# Locally it won't exist, so the Quit button stays available for your own testing.
+IS_PRODUCTION = bool(os.environ.get("RENDER"))
+
 STATE = {
     "producer_consumer": {"thread": None, "output": StringIO(), "running": False},
     "dining_philosopher": {"thread": None, "output": StringIO(), "running": False},
@@ -37,7 +41,7 @@ def _run(problem, target_fn, args):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", is_production=IS_PRODUCTION)
 
 
 @app.route("/api/start/<problem>", methods=["POST"])
@@ -109,6 +113,8 @@ def control(action):
 
 @app.route("/api/shutdown", methods=["POST"])
 def shutdown():
+    if IS_PRODUCTION:
+        return jsonify(error="Shutdown is disabled on the live demo"), 403
     def stop():
         time.sleep(0.3)  # give Flask a moment to send the response first
         os._exit(0)
@@ -117,4 +123,5 @@ def shutdown():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)

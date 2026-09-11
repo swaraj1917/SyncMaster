@@ -86,7 +86,9 @@
   <button onclick="control('pause')">⏸ Pause</button>
   <button onclick="control('resume')">▶ Resume</button>
   <button onclick="control('stop')">⏹ Stop</button>
+  {% if not is_production %}
   <button id="quit-btn" onclick="quitServer()">⏻ Quit Server</button>
+  {% endif %}
 </footer>
 
 <script src="{{ url_for('static', filename='app.js') }}"></script>
